@@ -12,7 +12,7 @@
                     <h5 class="card-title">[[${pizza.name}]]</h5>
                     <p class="card-text">[[${pizza.description}]]</p>
                     <div>
-                        <a th:href="@{/pizzas/${pizza.id}}" class="btn btn-primary">Go somewhere</a>
+                        <a th:href="@{pizzas + '/' + ${pizza.id}}" class="btn btn-primary">Vedi in dettaglio</a>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,21 @@
+<th:block th:replace="~{fragments/fragments :: thymeleaf}" />
+
+<body>
+    <nav th:replace="~{fragments/fragments :: navbar}" />
+    <main class="container mb-4">
+        <h1>[[${pizza.name}]]</h1>
+        <div class="d-flex gap-3">
+            <figure class="w-25">
+                <img class="w-100" th:src="${pizza.imageUrl}" th:alt="${pizza.name}">
+            </figure>
+            <div>
+                <h3>Descrizione: </h3>
+                <p>[[${pizza.description}]]</p>
+                <h4>Il prezzo è: [[${pizza.price}]]</h4>
+                <a class="btn btn-primary my-2" th:href="@{/pizzas}">Torna alle pizze</a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
