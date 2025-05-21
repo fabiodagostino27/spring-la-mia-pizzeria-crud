@@ -3,6 +3,12 @@
 <body>
     <nav th:replace="~{fragments/fragments :: navbar}" />
     <main class="container mb-4">
+        <h1>Le nostre pizze:</h1>
+        <h3>Ricerca:</h3>
+        <form th:action="@{/pizzas/search}" class="d-flex my-3">
+            <input class="form-control rounded-end-0" id="name" type="text" name="name" placeholder="Cerca per nome" th:value="${name}">
+            <button class="btn btn-primary rounded-start-0">Cerca</button>
+        </form>
         <div class="row gap-3 justify-content-center">
             <div class="card col-3 p-0" th:each="pizza : ${pizzas}">
                 <figure class="h-50 w-100">
@@ -12,7 +18,7 @@
                     <h5 class="card-title">[[${pizza.name}]]</h5>
                     <p class="card-text">[[${pizza.description}]]</p>
                     <div>
-                        <a th:href="@{pizzas + '/' + ${pizza.id}}" class="btn btn-primary">Vedi in dettaglio</a>
+                        <a th:href="@{/pizzas/{id}(id=${pizza.id})}" class="btn btn-primary">Vedi in dettaglio</a>
                     </div>
                 </div>
             </div>

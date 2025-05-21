@@ -36,7 +36,7 @@ public class PizzaController {
     }
     
     @GetMapping("/search")
-    public String getMethodName(@RequestParam String name, Model model) {
+    public String getMethodName(@RequestParam("name") String name, Model model) {
         List<Pizza> pizzas = repository.findByNameContaining(name);
         model.addAttribute("pizzas", pizzas);
         return "pizzas/index";
