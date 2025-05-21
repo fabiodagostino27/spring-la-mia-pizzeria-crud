@@ -1,5 +1,8 @@
 package org.lessons.java.spring_la_mia_pizzeria_crud.controller;
 
+import java.util.List;
+
+import org.lessons.java.spring_la_mia_pizzeria_crud.model.Pizza;
 import org.lessons.java.spring_la_mia_pizzeria_crud.repo.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,8 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/pizzas")
 public class PizzaController {
 
+    @Autowired
+    private PizzaRepository repository;
+
     @GetMapping
-    public String pizzasIndex() {
+    public String pizzasIndex(Model model) {
+        List<Pizza> pizzas = repository.findAll();
+        model.addAttribute("pizzas", pizzas);
         return "pizzas/index";
     }
     

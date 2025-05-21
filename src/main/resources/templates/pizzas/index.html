@@ -1,6 +1,23 @@
 <th:block th:replace="~{fragments/fragments :: thymeleaf}" />
+
 <body>
     <nav th:replace="~{fragments/fragments :: navbar}" />
-    <h1>Ciao</h1>
+    <main class="container mb-4">
+        <div class="row gap-3 justify-content-center">
+            <div class="card col-3 p-0" th:each="pizza : ${pizzas}">
+                <figure class="h-50 w-100">
+                    <img th:src="${pizza.imageUrl}" class="w-100 h-100 object-fit-cover" alt="${pizza.name}">
+                </figure>
+                <div class="card-body h-50 d-flex flex-column justify-content-between">
+                    <h5 class="card-title">[[${pizza.name}]]</h5>
+                    <p class="card-text">[[${pizza.description}]]</p>
+                    <div>
+                        <a th:href="@{/pizzas/${pizza.id}}" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
+
 </html>
