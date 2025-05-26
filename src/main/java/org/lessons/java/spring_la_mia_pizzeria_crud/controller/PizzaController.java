@@ -20,8 +20,6 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
-
 @Controller
 @RequestMapping("/pizzas")
 public class PizzaController {
@@ -42,7 +40,7 @@ public class PizzaController {
         model.addAttribute(pizza);
         return "pizzas/show";
     }
-    
+
     @GetMapping("/search")
     public String getMethodName(@RequestParam("name") String name, Model model) {
         List<Pizza> pizzas = repository.findByNameContaining(name);
@@ -61,11 +59,26 @@ public class PizzaController {
         if (bindingResult.hasErrors()) {
             return "/pizzas/create";
         }
-        
+
         repository.save(pizza);
 
         return "redirect:/pizzas";
     }
-    
-    
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("pizza", repository.findById(id).get());
+        return "pizzas/edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String update(@Valid @ModelAttribute("pizza") Pizza pizza, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "/pizzas/edit";
+        }
+
+        repository.save(pizza);
+
+        return "redirect:/pizzas";
+    }
 }
