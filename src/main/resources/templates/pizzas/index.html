@@ -3,7 +3,10 @@
 <body>
     <nav th:replace="~{fragments/fragments :: navbar}" />
     <main class="container mb-4">
-        <h1>Le nostre pizze:</h1>
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>Le nostre pizze:</h1>
+            <a class="btn btn-primary" th:href="@{/pizzas/create}">Aggiungi una pizza</a>
+        </div>
         <h3>Ricerca:</h3>
         <form th:action="@{/pizzas/search}" class="d-flex my-3">
             <input class="form-control rounded-end-0" id="name" type="text" name="name" placeholder="Cerca per nome"
